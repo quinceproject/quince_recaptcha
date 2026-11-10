@@ -36,7 +36,7 @@ class Quince_Recaptcha extends Module
     {
         $this->name = 'quince_recaptcha';
         $this->tab = 'front_office_features';
-        $this->version = '0.2.0';
+        $this->version = '0.2.1';
         $this->author = 'Quince Project';
         $this->need_instance = 0;
         $this->ps_versions_compliancy = ['min' => '9.0.0', 'max' => '9.99.99'];
@@ -106,7 +106,7 @@ class Quince_Recaptcha extends Module
 
         $hook = new Hook();
         $hook->name = $nazwa;
-        $hook->title = 'Quince — zapis dostawcy oceny przy formularzu';
+        $hook->title = 'Quince: zapis dostawcy oceny przy formularzu';
         $hook->description = 'Pod polami strażnika w każdym chronionym formularzu. Parametr form_id to nazwa formularza.';
         $hook->position = false;
 

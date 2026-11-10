@@ -138,6 +138,11 @@
         <target>0,5 to ustawienie proponowane przez Google. Podnieś, gdy spam przechodzi; obniż, gdy klienci skarżą się, że formularz ich odrzuca.</target>
       </trans-unit>
 
+      <trans-unit id="quince.recaptcha.zly_token">
+        <source>Invalid security token, please try again.</source>
+        <target>Nieprawidłowy token bezpieczeństwa, spróbuj ponownie.</target>
+      </trans-unit>
+
     </body>
   </file>
 </xliff>
