@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file source-language="en-US" target-language="pl-PL" datatype="plaintext" original="translations">
+    <body>
+
+      <trans-unit id="quince.recaptcha.nazwa">
+        <source>Quince reCAPTCHA</source>
+        <target>Quince reCAPTCHA</target>
+      </trans-unit>
+
+      <trans-unit id="quince.recaptcha.opis">
+        <source>Google reCAPTCHA on shop forms, on top of what the engine checks by itself.</source>
+        <target>Google reCAPTCHA na formularzach sklepu, ponad to, co silnik sprawdza sam.</target>
+      </trans-unit>
+
+      <trans-unit id="quince.recaptcha.odinstalowanie">
+        <source>Uninstall the module? Forms keep working, without the Google check.</source>
+        <target>Odinstalować moduł? Formularze będą działać dalej, bez sprawdzania przez Google.</target>
+      </trans-unit>
+
+      <trans-unit id="quince.recaptcha.etykieta">
+        <source>reCAPTCHA</source>
+        <target>reCAPTCHA</target>
+      </trans-unit>
+
+      <trans-unit id="quince.recaptcha.zapisano">
+        <source>Settings saved.</source>
+        <target>Ustawienia zapisane.</target>
+      </trans-unit>
+
+      <trans-unit id="quince.recaptcha.zapisz">
+        <source>Save changes</source>
+        <target>Zapisz zmiany</target>
+      </trans-unit>
+
+      <trans-unit id="quince.recaptcha.wlaczenie">
+        <source>Google check on shop forms</source>
+        <target>Sprawdzanie przez Google na formularzach sklepu</target>
+      </trans-unit>
+
+      <trans-unit id="quince.recaptcha.wlaczenie.opis">
+        <source>Forms are guarded without it. This adds Google's judgement on top: it watches how the form was filled in and scores it.</source>
+        <target>Formularze są chronione i bez tego. To dokłada ocenę Google: przygląda się, jak formularz został wypełniony, i wystawia notę.</target>
+      </trans-unit>
+
+      <trans-unit id="quince.recaptcha.wlaczenie.przelacznik">
+        <source>Ask Google about every submission</source>
+        <target>Pytaj Google o każde wysłane zgłoszenie</target>
+      </trans-unit>
+
+      <trans-unit id="quince.recaptcha.wlaczenie.uwaga">
+        <source>Until the keys below are filled in, the shop behaves as if this were off.</source>
+        <target>Dopóki nie wpiszesz kluczy poniżej, sklep zachowuje się tak, jakby to było wyłączone.</target>
+      </trans-unit>
+
+      <trans-unit id="quince.recaptcha.klucze">
+        <source>Keys from Google</source>
+        <target>Klucze od Google</target>
+      </trans-unit>
+
+      <trans-unit id="quince.recaptcha.klucze.opis">
+        <source>You get them at google.com/recaptcha after adding your shop domain. Pick reCAPTCHA v3. The kind without pictures to click.</source>
+        <target>Dostaniesz je na google.com/recaptcha po dodaniu domeny sklepu. Wybierz reCAPTCHA v3. Tę bez obrazków do klikania.</target>
+      </trans-unit>
+
+      <trans-unit id="quince.recaptcha.klucze.rodzaj">
+        <source>Which kind of key you have</source>
+        <target>Jaki masz rodzaj klucza</target>
+      </trans-unit>
+
+      <trans-unit id="quince.recaptcha.klucze.v3">
+        <source>reCAPTCHA v3</source>
+        <target>reCAPTCHA v3</target>
+      </trans-unit>
+
+      <trans-unit id="quince.recaptcha.klucze.enterprise">
+        <source>reCAPTCHA Enterprise</source>
+        <target>reCAPTCHA Enterprise</target>
+      </trans-unit>
+
+      <trans-unit id="quince.recaptcha.klucze.rodzaj.uwaga">
+        <source>Enterprise is the paid version run from Google Cloud. If you signed up on the free page, keep the first one.</source>
+        <target>Enterprise to wersja płatna, prowadzona z Google Cloud. Jeśli rejestrowałeś się na darmowej stronie, zostaw pierwszą.</target>
+      </trans-unit>
+
+      <trans-unit id="quince.recaptcha.klucze.witryny">
+        <source>Site key</source>
+        <target>Klucz witryny</target>
+      </trans-unit>
+
+      <trans-unit id="quince.recaptcha.klucze.witryny.uwaga">
+        <source>The public one. It goes into the shop pages.</source>
+        <target>Ten jawny. Trafia na strony sklepu.</target>
+      </trans-unit>
+
+      <trans-unit id="quince.recaptcha.klucze.tajny">
+        <source>Secret key</source>
+        <target>Klucz tajny</target>
+      </trans-unit>
+
+      <trans-unit id="quince.recaptcha.klucze.tajny.uwaga">
+        <source>Never leaves your shop. Only the shop asks Google with it.</source>
+        <target>Nigdy nie opuszcza sklepu. Pyta nim Google wyłącznie sklep.</target>
+      </trans-unit>
+
+      <trans-unit id="quince.recaptcha.klucze.api">
+        <source>Google Cloud API key</source>
+        <target>Klucz API Google Cloud</target>
+      </trans-unit>
+
+      <trans-unit id="quince.recaptcha.klucze.projekt">
+        <source>Google Cloud project</source>
+        <target>Projekt Google Cloud</target>
+      </trans-unit>
+
+      <trans-unit id="quince.recaptcha.klucze.projekt.uwaga">
+        <source>The project in which the site key was created.</source>
+        <target>Projekt, w którym powstał klucz witryny.</target>
+      </trans-unit>
+
+      <trans-unit id="quince.recaptcha.prog">
+        <source>How strict to be</source>
+        <target>Jak surowo oceniać</target>
+      </trans-unit>
+
+      <trans-unit id="quince.recaptcha.prog.opis">
+        <source>Google scores every submission from 0 (certainly a machine) to 1 (certainly a person). Below the score you set here, the shop refuses the submission.</source>
+        <target>Google ocenia każde zgłoszenie od 0 (na pewno maszyna) do 1 (na pewno człowiek). Poniżej noty, którą tu ustawisz, sklep odmawia przyjęcia.</target>
+      </trans-unit>
+
+      <trans-unit id="quince.recaptcha.prog.pole">
+        <source>Refuse below</source>
+        <target>Odmawiaj poniżej</target>
+      </trans-unit>
+
+      <trans-unit id="quince.recaptcha.prog.uwaga">
+        <source>0.5 is the setting Google suggests. Raise it when spam gets through, lower it when customers complain that the form refuses them.</source>
+        <target>0,5 to ustawienie proponowane przez Google. Podnieś, gdy spam przechodzi; obniż, gdy klienci skarżą się, że formularz ich odrzuca.</target>
+      </trans-unit>
+
+    </body>
+  </file>
+</xliff>

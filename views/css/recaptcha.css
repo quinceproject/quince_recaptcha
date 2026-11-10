@@ -1,0 +1,8 @@
+/* Quince reCAPTCHA — znaczek Google w rogu strony.
+
+   Schowany, bo przy każdym chronionym formularzu stoi zapis „chronione przez
+   reCAPTCHA" z odnośnikami do polityk Google (views/templates/hook/notice.tpl).
+   Regulamin pozwala na to tylko razem z tym zapisem. */
+.grecaptcha-badge {
+    visibility: hidden;
+}

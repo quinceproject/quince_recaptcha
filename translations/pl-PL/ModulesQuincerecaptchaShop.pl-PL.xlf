@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file source-language="en-US" target-language="pl-PL" datatype="plaintext" original="ModulesQuincerecaptchaShop">
+    <body>
+
+      <!-- Zapis o ochronie przy chronionym formularzu (notice.tpl). -->
+      <trans-unit id="quince.recaptcha.notice">
+        <source>This site is protected by reCAPTCHA and the Google %privacy% and %terms% apply.</source>
+        <target>Ta witryna jest chroniona przez reCAPTCHA. Obowiązują %privacy% i %terms% Google.</target>
+      </trans-unit>
+      <trans-unit id="quince.recaptcha.privacy">
+        <source>Privacy Policy</source>
+        <target>Polityka prywatności</target>
+      </trans-unit>
+      <trans-unit id="quince.recaptcha.terms">
+        <source>Terms of Service</source>
+        <target>Warunki korzystania z usługi</target>
+      </trans-unit>
+
+    </body>
+  </file>
+</xliff>

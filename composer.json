@@ -1,0 +1,23 @@
+{
+    "name": "quinceproject/recaptcha",
+    "description": "Quince reCAPTCHA: Google reCAPTCHA v3 on shop forms, on top of the Quince Engine form protection",
+    "type": "prestashop-module",
+    "license": "OSL-3.0",
+    "authors": [
+        {
+            "name": "Quince Project",
+            "email": "quinceproject@proton.me"
+        }
+    ],
+    "require": {
+        "php": ">=8.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "Quince\\Recaptcha\\": "src/"
+        }
+    },
+    "config": {
+        "prepend-autoloader": false
+    }
+}

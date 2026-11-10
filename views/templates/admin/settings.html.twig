@@ -1,0 +1,114 @@
+{# Ekran modułu w stylistyce silnika: ten sam layout, te same makra pól.
+   Moduł nie ma własnego CSS-u ani własnego sidebara — bierze je stąd. #}
+{% extends '@Modules/quince_engine/views/templates/admin/layout.html.twig' %}
+{% import '@Modules/quince_engine/views/templates/admin/_macros/icons.html.twig' as icons %}
+{% import '@Modules/quince_engine/views/templates/admin/_macros/fields.html.twig' as fields %}
+
+{% trans_default_domain 'Modules.Quincerecaptcha.Admin' %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('../modules/quince_engine/views/js/vendor/alpine.min.js') ~ qcVer }}" defer></script>
+{% endblock %}
+
+{% block quince_actions %}
+    <button type="submit" form="quince-recaptcha" class="qc-btn qc-btn-primary">
+        {{ icons.icon('check', 14) }} {{ 'Save changes'|trans }}
+    </button>
+{% endblock %}
+
+{% block quince_body %}
+<form id="quince-recaptcha" method="post" action="{{ path('quince_recaptcha_save') }}"
+      class="qc-stack"
+      x-data="{ enabled: {{ settings.ENABLED == '1' ? 'true' : 'false' }}, mode: '{{ settings.MODE }}' }">
+    <input type="hidden" name="_csrf_token" value="{{ csrf_token('quince_recaptcha_save') }}">
+
+    {# ── 1. Włączenie ── #}
+    <div class="qc-card">
+        <div class="qc-card-head">
+            <div>
+                <div class="qc-card-title">{{ 'Google check on shop forms'|trans }}</div>
+                <div class="qc-card-desc">{{ 'Forms are guarded without it. This adds Google\'s judgement on top: it watches how the form was filled in and scores it.'|trans }}</div>
+            </div>
+        </div>
+
+        <div class="qc-card-body">
+            {{ fields.toggle('ENABLED', settings.ENABLED == '1', 'Ask Google about every submission'|trans, '', 'enabled') }}
+            <div class="qc-hint">{{ 'Until the keys below are filled in, the shop behaves as if this were off.'|trans }}</div>
+        </div>
+    </div>
+
+    {# ── 2. Klucze ── #}
+    <div class="qc-card qc-disabled-area" :class="!enabled && 'is-off'" :inert="!enabled">
+        <div class="qc-card-head">
+            <div>
+                <div class="qc-card-title">{{ 'Keys from Google'|trans }}</div>
+                <div class="qc-card-desc">{{ 'You get them at google.com/recaptcha after adding your shop domain. Pick reCAPTCHA v3. The kind without pictures to click.'|trans }}</div>
+            </div>
+        </div>
+
+        <div class="qc-card-body">
+            <div class="qc-field">
+                <label class="qc-label">{{ 'Which kind of key you have'|trans }}</label>
+                <div class="qc-seg qc-seg-wrap" role="group">
+                    <button type="button" class="qc-seg-btn" :class="mode === 'standard' && 'is-active'"
+                            @click="mode = 'standard'">{{ 'reCAPTCHA v3'|trans }}</button>
+                    <button type="button" class="qc-seg-btn" :class="mode === 'enterprise' && 'is-active'"
+                            @click="mode = 'enterprise'">{{ 'reCAPTCHA Enterprise'|trans }}</button>
+                </div>
+                <input type="hidden" name="MODE" :value="mode">
+                <div class="qc-hint">{{ 'Enterprise is the paid version run from Google Cloud. If you signed up on the free page, keep the first one.'|trans }}</div>
+            </div>
+
+            <div class="qc-form-grid qc-form-grid-2" style="margin-block-start:16px">
+                <div class="qc-field">
+                    <label class="qc-label" for="q-site-key">{{ 'Site key'|trans }}</label>
+                    <input type="text" class="qc-field-base qc-focusable" id="q-site-key" name="SITE_KEY"
+                           value="{{ settings.SITE_KEY }}" spellcheck="false" autocomplete="off">
+                    <div class="qc-hint">{{ 'The public one. It goes into the shop pages.'|trans }}</div>
+                </div>
+
+                <div class="qc-field" x-show="mode === 'standard'" x-cloak>
+                    <label class="qc-label" for="q-secret-key">{{ 'Secret key'|trans }}</label>
+                    <input type="password" class="qc-field-base qc-focusable" id="q-secret-key" name="SECRET_KEY"
+                           value="{{ settings.SECRET_KEY }}" spellcheck="false" autocomplete="off">
+                    <div class="qc-hint">{{ 'Never leaves your shop. Only the shop asks Google with it.'|trans }}</div>
+                </div>
+
+                <div class="qc-field" x-show="mode === 'enterprise'" x-cloak>
+                    <label class="qc-label" for="q-api-key">{{ 'Google Cloud API key'|trans }}</label>
+                    <input type="password" class="qc-field-base qc-focusable" id="q-api-key" name="API_KEY"
+                           value="{{ settings.API_KEY }}" spellcheck="false" autocomplete="off">
+                </div>
+
+                <div class="qc-field" x-show="mode === 'enterprise'" x-cloak>
+                    <label class="qc-label" for="q-project-id">{{ 'Google Cloud project'|trans }}</label>
+                    <input type="text" class="qc-field-base qc-focusable" id="q-project-id" name="PROJECT_ID"
+                           value="{{ settings.PROJECT_ID }}" spellcheck="false" autocomplete="off">
+                    <div class="qc-hint">{{ 'The project in which the site key was created.'|trans }}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {# ── 3. Próg ── #}
+    <div class="qc-card qc-disabled-area" :class="!enabled && 'is-off'" :inert="!enabled">
+        <div class="qc-card-head">
+            <div>
+                <div class="qc-card-title">{{ 'How strict to be'|trans }}</div>
+                <div class="qc-card-desc">{{ 'Google scores every submission from 0 (certainly a machine) to 1 (certainly a person). Below the score you set here, the shop refuses the submission.'|trans }}</div>
+            </div>
+        </div>
+
+        <div class="qc-card-body">
+            <div class="qc-field" style="max-inline-size:260px">
+                <label class="qc-label" for="q-threshold">{{ 'Refuse below'|trans }}</label>
+                <input type="number" class="qc-field-base qc-focusable" id="q-threshold" name="THRESHOLD"
+                       value="{{ settings.THRESHOLD }}" min="0" max="1" step="0.1">
+                <div class="qc-hint">{{ '0.5 is the setting Google suggests. Raise it when spam gets through, lower it when customers complain that the form refuses them.'|trans }}</div>
+            </div>
+        </div>
+    </div>
+
+</form>
+{% endblock %}
