@@ -19,11 +19,11 @@ use Quince\Recaptcha\Settings\RecaptchaSettings;
 use Quince\Recaptcha\Settings\TokenCheck;
 
 /**
- * Quince reCAPTCHA — dostawca oceny zgłoszeń dla formularzy sklepu.
+ * Quince reCAPTCHA: dostawca oceny zgłoszeń dla formularzy sklepu.
  *
  * Moduł nie zna żadnego formularza z nazwy i nie wtrąca się do żadnego z nich.
  * Zgłasza się silnikowi na hook `actionQuinceFormVerify` i dostaje ostatnie
- * słowo po zaporach, które silnik ma u siebie — pułapce, czasie wypełnienia
+ * słowo po zaporach, które silnik ma u siebie: pułapce, czasie wypełnienia
  * i limicie powtórzeń.
  *
  * Konsekwencja tego podziału: bez tego modułu formularze działają i są
@@ -156,8 +156,8 @@ class Quince_Recaptcha extends Module
     /**
      * Ocena zgłoszenia formularza.
      *
-     * Zwracamy `null`, gdy moduł nie jest gotowy albo Google nie odpowiedziało —
-     * silnik traktuje to jako brak zdania i przepuszcza zgłoszenie dalej.
+     * Zwracamy `null`, gdy moduł nie jest gotowy albo Google nie odpowiedziało.
+     * Silnik traktuje to jako brak zdania i przepuszcza zgłoszenie dalej.
      *
      * @param array{formId?:string,values?:array<string,mixed>} $params
      */
@@ -177,7 +177,7 @@ class Quince_Recaptcha extends Module
     }
 
     /**
-     * Skrypt Google i nasza obsługa — tylko wtedy, gdy moduł jest skonfigurowany.
+     * Skrypt Google i nasza obsługa, tylko wtedy, gdy moduł jest skonfigurowany.
      *
      * Ładujemy je na każdej stronie sklepu, bo formularz bywa wszędzie: w szufladzie
      * kontaktu, w stopce, na karcie produktu. Skrypt Google waży kilkanaście

@@ -1,9 +1,9 @@
 /* ===================================================================
-   Quince reCAPTCHA — dokładanie znacznika do wysyłanego formularza
+   Quince reCAPTCHA: dokładanie znacznika do wysyłanego formularza
 
    reCAPTCHA v3 nie pokazuje zagadki: ocenia zachowanie i zwraca znacznik
    ważny około dwóch minut. Dlatego nie pobieramy go przy wczytaniu strony,
-   tylko w chwili wysyłki — znacznik pobrany wcześniej zdążyłby wygasnąć
+   tylko w chwili wysyłki: znacznik pobrany wcześniej zdążyłby wygasnąć
    na dłużej wypełnianym formularzu.
 
    Chronimy formularze, które silnik oznaczył swoimi polami: obecność pola
@@ -21,7 +21,7 @@
         return window.quinceRecaptchaKey || '';
     }
 
-    /** Nazwa formularza — ta sama, którą sklep sprawdzi po stronie serwera. */
+    /** Nazwa formularza: ta sama, którą sklep sprawdzi po stronie serwera. */
     function akcja(formularz) {
         var pole = formularz.querySelector('[name="q_form"]');
 
@@ -49,7 +49,7 @@
         formularz.dataset.qRecaptcha = '1';
 
         formularz.addEventListener('submit', function (e) {
-            // Znacznik już jest — to nasza własna, ponowiona wysyłka.
+            // Znacznik już jest: to nasza własna, ponowiona wysyłka.
             var pole = formularz.querySelector('[name="' + POLE + '"]');
 
             if (pole && pole.value) {
@@ -75,7 +75,7 @@
                         }
                     })
                     .catch(function () {
-                        // Google nie odpowiedziało. Wysyłamy bez znacznika —
+                        // Google nie odpowiedziało. Wysyłamy bez znacznika,
                         // sklep i tak sprawdzi pułapkę, czas i limit powtórzeń.
                         wstawZnacznik(formularz, '');
                         formularz.submit();
@@ -98,7 +98,7 @@
         szukaj(document);
     });
 
-    // Formularz bywa wstawiany po wczytaniu strony — w szufladzie kontaktu,
+    // Formularz bywa wstawiany po wczytaniu strony: w szufladzie kontaktu,
     // w oknie zapytania o produkt. Wtedy trzeba go podpiąć ponownie.
     if (window.Quince && typeof window.Quince.register === 'function') {
         window.Quince.register('form:has([name="q_guard"])', podepnij);

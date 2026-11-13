@@ -18,7 +18,7 @@ use Configuration;
  *
  * Moduł obsługuje dwa warianty Google: klasyczny reCAPTCHA v3 (klucz witryny +
  * klucz tajny) i wariant Enterprise (klucz witryny + klucz API + identyfikator
- * projektu). Różnią się tylko sposobem odpytania — ocena wraca w obu tak samo,
+ * projektu). Różnią się tylko sposobem odpytania; ocena wraca w obu tak samo,
  * jako liczba od 0 do 1.
  *
  * Próg oceny zostaje w ustawieniach, bo zależy od sklepu: sklep zasypywany
@@ -64,7 +64,7 @@ final class RecaptchaSettings
     /**
      * Czy moduł ma się w cokolwiek wtrącać.
      *
-     * Włączony, ale bez kluczy, to stan przejściowy — sprzedawca zapisał ekran,
+     * Włączony, ale bez kluczy, to stan przejściowy: sprzedawca zapisał ekran,
      * zanim wkleił klucze z konsoli Google. Wtedy milczymy zamiast odrzucać
      * wszystkie zgłoszenia w sklepie.
      */
@@ -90,7 +90,7 @@ final class RecaptchaSettings
     {
         $prog = (float) $this->all()['THRESHOLD'];
 
-        // Próg poza zakresem oceny przepuszczałby wszystko albo nic — jedno i
+        // Próg poza zakresem oceny przepuszczałby wszystko albo nic. Jedno i
         // drugie to nie jest ustawienie, tylko awaria.
         return max(0.0, min(1.0, $prog));
     }

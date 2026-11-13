@@ -14,7 +14,7 @@ if (!defined('_PS_VERSION_')) {
 }
 
 /**
- * 0.2.0 — zapis „chronione przez reCAPTCHA" przy chronionych formularzach.
+ * 0.2.0: zapis „chronione przez reCAPTCHA" przy chronionych formularzach.
  *
  * Moduł zakłada miejsce na zapis i się na nie zapisuje. Znaczek Google chowa
  * arkusz ładowany razem ze skryptem, więc tutaj nie ma nic więcej do zrobienia.

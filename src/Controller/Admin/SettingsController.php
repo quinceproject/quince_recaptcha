@@ -21,7 +21,7 @@ use Symfony\Component\HttpFoundation\Response;
  * Ustawienia reCAPTCHY.
  *
  * Dziedziczy po klasie z silnika, więc ekran dostaje ten sam sidebar, pasek
- * zapisu i wygląd co reszta panelu Quince — bez kopiowania czegokolwiek.
+ * zapisu i wygląd co reszta panelu Quince.
  */
 class SettingsController extends QuinceController
 {

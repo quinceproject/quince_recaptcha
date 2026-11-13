@@ -17,7 +17,7 @@ namespace Quince\Recaptcha\Settings;
  * Zwraca `true` (przepuszczam), `false` (odrzucam) albo `null` (nie mam zdania).
  * Trzecia odpowiedź jest tu najważniejsza: gdy Google nie odpowiada albo moduł
  * nie jest skonfigurowany, sklep ma dalej przyjmować zamówienia i zapytania.
- * Zapora, która przy własnej awarii zamyka sklep, jest gorsza niż jej brak —
+ * Zapora, która przy własnej awarii zamyka sklep, jest gorsza niż jej brak,
  * a zgłoszenie i tak przeszło już przez pułapkę, czas wypełnienia i limit
  * powtórzeń po stronie silnika.
  */
@@ -64,7 +64,7 @@ final class TokenCheck
         }
 
         // Znacznik pobrany dla innego formularza znaczy, że ktoś przenosi go
-        // między formularzami — legalna wysyłka zawsze pasuje do swojej akcji.
+        // między formularzami. Legalna wysyłka zawsze pasuje do swojej akcji.
         if ($action !== '' && $akcja !== null && $akcja !== $action) {
             return false;
         }

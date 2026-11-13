@@ -1,5 +1,5 @@
 {**
- * Quince reCAPTCHA — zapis o ochronie przy formularzu.
+ * Quince reCAPTCHA: zapis o ochronie przy formularzu.
  *
  * Treść i odnośniki według wymogu Google dla schowanego znaczka reCAPTCHA.
  * Nazwy polityk są osobnymi napisami, żeby tłumaczenie mogło ustawić je
