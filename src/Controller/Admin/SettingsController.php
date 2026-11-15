@@ -11,6 +11,10 @@ declare(strict_types=1);
 
 namespace Quince\Recaptcha\Controller\Admin;
 
+if (!defined('_PS_VERSION_')) {
+    exit;
+}
+
 use PrestaShopBundle\Security\Attribute\AdminSecurity;
 use Quince\Engine\Controller\Admin\QuinceController;
 use Quince\Recaptcha\Settings\RecaptchaSettings;
