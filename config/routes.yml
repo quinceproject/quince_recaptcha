@@ -1,14 +1,14 @@
 # Ekran ustawień reCAPTCHY.
 #
-# `_legacy_controller` wskazuje zakładkę silnika, bo moduł bez niego nie działa.
-# Moduł nie ma własnej zakładki, więc PrestaShop sprawdza uprawnienia na
-# zakładce silnika.
+# `_legacy_controller` wskazuje własną zakładkę modułu (`AdminQuinceRecaptcha`).
+# Do niej odnoszą się uprawnienia pracownika: atrybuty `#[AdminSecurity]`
+# w kontrolerach sprawdzają prawa do tej zakładki.
 quince_recaptcha:
   path: quince/recaptcha
   methods: [GET]
   defaults:
     _controller: Quince\Recaptcha\Controller\Admin\SettingsController::indexAction
-    _legacy_controller: 'AdminQuince'
+    _legacy_controller: 'AdminQuinceRecaptcha'
     _legacy_link: 'AdminQuince'
 
 quince_recaptcha_save:
@@ -16,5 +16,5 @@ quince_recaptcha_save:
   methods: [POST]
   defaults:
     _controller: Quince\Recaptcha\Controller\Admin\SettingsController::saveAction
-    _legacy_controller: 'AdminQuince'
+    _legacy_controller: 'AdminQuinceRecaptcha'
     _legacy_link: 'AdminQuince:save'
