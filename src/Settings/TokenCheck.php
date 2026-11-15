@@ -53,13 +53,21 @@ final class TokenCheck
             ? $this->askEnterprise($token, $action, $s)
             : $this->askStandard($token, $s);
 
+        // Celowo przepuszczamy (fail open): awaria albo brak łączności z Google
+        // nie może odciąć sklepu od zamówień. Patrz opis klasy.
         if ($odpowiedz === null) {
             return null;
         }
 
-        [$poprawny, $akcja, $ocena] = $odpowiedz;
+        [$poprawny, $akcja, $ocena, $host] = $odpowiedz;
 
         if (!$poprawny) {
+            return false;
+        }
+
+        // Znacznik rozwiązany na obcej stronie z tym samym kluczem witryny
+        // nie jest dowodem, że to klient tego sklepu.
+        if ($host !== null && $host !== '' && !in_array(strtolower($host), $this->shopHosts(), true)) {
             return false;
         }
 
@@ -75,7 +83,7 @@ final class TokenCheck
     /**
      * @param array<string,string> $s
      *
-     * @return array{0:bool,1:?string,2:float}|null
+     * @return array{0:bool,1:?string,2:float,3:?string}|null
      */
     private function askStandard(string $token, array $s): ?array
     {
@@ -91,14 +99,16 @@ final class TokenCheck
         return [
             (bool) ($dane['success'] ?? false),
             isset($dane['action']) ? (string) $dane['action'] : null,
-            (float) ($dane['score'] ?? 1.0),
+            // Brak oceny to brak dowodu, a nie pełne zaufanie.
+            (float) ($dane['score'] ?? 0.0),
+            isset($dane['hostname']) ? (string) $dane['hostname'] : null,
         ];
     }
 
     /**
      * @param array<string,string> $s
      *
-     * @return array{0:bool,1:?string,2:float}|null
+     * @return array{0:bool,1:?string,2:float,3:?string}|null
      */
     private function askEnterprise(string $token, string $action, array $s): ?array
     {
@@ -122,8 +132,43 @@ final class TokenCheck
         return [
             (bool) ($wlasciwosci['valid'] ?? false),
             isset($wlasciwosci['action']) ? (string) $wlasciwosci['action'] : null,
-            (float) ($dane['riskAnalysis']['score'] ?? 1.0),
+            (float) ($dane['riskAnalysis']['score'] ?? 0.0),
+            isset($wlasciwosci['hostname']) ? (string) $wlasciwosci['hostname'] : null,
         ];
+    }
+
+    /**
+     * Domeny bieżącego sklepu, także dodatkowe adresy z „Adresy URL sklepu".
+     *
+     * @return string[] małymi literami, bez portu
+     */
+    private function shopHosts(): array
+    {
+        $domeny = [\Tools::getShopDomain(false), \Tools::getShopDomainSsl(false)];
+        $idShop = (int) \Context::getContext()->shop->id;
+
+        if ($idShop > 0) {
+            $wiersze = \Db::getInstance()->executeS(
+                'SELECT `domain`, `domain_ssl` FROM `' . _DB_PREFIX_ . 'shop_url` WHERE `active` = 1 AND `id_shop` = ' . $idShop
+            ) ?: [];
+
+            foreach ($wiersze as $wiersz) {
+                $domeny[] = (string) $wiersz['domain'];
+                $domeny[] = (string) $wiersz['domain_ssl'];
+            }
+        }
+
+        $hosty = [];
+
+        foreach ($domeny as $domena) {
+            $host = strtolower(trim(explode(':', (string) $domena)[0]));
+
+            if ($host !== '') {
+                $hosty[] = $host;
+            }
+        }
+
+        return array_values(array_unique($hosty));
     }
 
     /**

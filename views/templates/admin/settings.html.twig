@@ -71,14 +71,16 @@
                 <div class="qc-field" x-show="mode === 'standard'" x-cloak>
                     <label class="qc-label" for="q-secret-key">{{ 'Secret key'|trans }}</label>
                     <input type="password" class="qc-field-base qc-focusable" id="q-secret-key" name="SECRET_KEY"
-                           value="{{ settings.SECRET_KEY }}" spellcheck="false" autocomplete="off">
+                           value="" spellcheck="false" autocomplete="new-password"
+                           placeholder="{{ secretsSet.SECRET_KEY ? 'A key is saved. Leave empty to keep it.'|trans : '' }}">
                     <div class="qc-hint">{{ 'Never leaves your shop. Only the shop asks Google with it.'|trans }}</div>
                 </div>
 
                 <div class="qc-field" x-show="mode === 'enterprise'" x-cloak>
                     <label class="qc-label" for="q-api-key">{{ 'Google Cloud API key'|trans }}</label>
                     <input type="password" class="qc-field-base qc-focusable" id="q-api-key" name="API_KEY"
-                           value="{{ settings.API_KEY }}" spellcheck="false" autocomplete="off">
+                           value="" spellcheck="false" autocomplete="new-password"
+                           placeholder="{{ secretsSet.API_KEY ? 'A key is saved. Leave empty to keep it.'|trans : '' }}">
                 </div>
 
                 <div class="qc-field" x-show="mode === 'enterprise'" x-cloak>

@@ -33,8 +33,19 @@ class SettingsController extends QuinceController
     #[AdminSecurity("is_granted('read', request.get('_legacy_controller'))", message: 'You do not have permission to view this.')]
     public function indexAction(): Response
     {
+        $ustawienia = $this->settings->all();
+
+        // Klucze tajne nie wracają do przeglądarki: formularz pokazuje tylko, że są zapisane.
+        $sekrety = [
+            'SECRET_KEY' => ($ustawienia['SECRET_KEY'] ?? '') !== '',
+            'API_KEY' => ($ustawienia['API_KEY'] ?? '') !== '',
+        ];
+        $ustawienia['SECRET_KEY'] = '';
+        $ustawienia['API_KEY'] = '';
+
         return $this->renderPanel('@Modules/quince_recaptcha/views/templates/admin/settings.html.twig', [
-            'settings' => $this->settings->all(),
+            'settings' => $ustawienia,
+            'secretsSet' => $sekrety,
             'ready' => $this->settings->isReady(),
             'layoutTitle' => 'reCAPTCHA',
             'layoutTitleDomain' => 'Modules.Quincerecaptcha.Admin',
@@ -51,7 +62,16 @@ class SettingsController extends QuinceController
             return $this->redirectToRoute('quince_recaptcha');
         }
 
-        $this->settings->save($request->request->all());
+        $wartosci = $request->request->all();
+
+        // Puste pole klucza tajnego znaczy „bez zmian": formularz nie zna zapisanej wartości.
+        foreach (['SECRET_KEY', 'API_KEY'] as $klucz) {
+            if (trim((string) ($wartosci[$klucz] ?? '')) === '') {
+                unset($wartosci[$klucz]);
+            }
+        }
+
+        $this->settings->save($wartosci);
         $this->addFlash('success', $this->trans('Settings saved.', 'Modules.Quincerecaptcha.Admin'));
 
         return $this->redirectToRoute('quince_recaptcha');

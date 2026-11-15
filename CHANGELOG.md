@@ -4,6 +4,19 @@ All notable changes to this module are documented here. The format follows
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and the versioning follows
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.2.3] - 2026-11-15
+
+### Security
+
+- **A Google answer without a score is a rejection**, not a pass. Before, it counted
+  as the best score.
+- **The answer must come from the shop's own domain** (the `hostname` Google reports),
+  so a token obtained on another site is not accepted.
+- **The secret and API keys are no longer printed into the settings page.** The fields
+  stay empty and show that a key is saved; leave a field empty to keep the key.
+- When Google cannot be reached, forms are still accepted, so a Google outage does not
+  stop orders. This is deliberate and now documented in the code.
+
 ## [0.2.2] - 2026-11-15
 
 ### Security

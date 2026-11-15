@@ -103,6 +103,11 @@
         <target>Nigdy nie opuszcza sklepu. Pyta nim Google wyłącznie sklep.</target>
       </trans-unit>
 
+      <trans-unit id="quince.recaptcha.klucze.zapisany">
+        <source>A key is saved. Leave empty to keep it.</source>
+        <target>Klucz jest zapisany. Zostaw puste, aby go zachować.</target>
+      </trans-unit>
+
       <trans-unit id="quince.recaptcha.klucze.api">
         <source>Google Cloud API key</source>
         <target>Klucz API Google Cloud</target>
